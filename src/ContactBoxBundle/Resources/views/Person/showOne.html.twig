@@ -1,0 +1,88 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+
+    <div class="container">
+        <h1>
+            <img width="150px" src="{{ asset('photos/'~ person.photoPath) }}"/>
+            {{ person.firstName }} {{ person.lastName }}
+            &nbsp;<small><a href="{{ path('deletePerson', {'id': person.id}) }}">Usuń</a></small>
+        </h1>
+
+        {% block editMain %}
+            <h3> Opis: </h3> {{ person.description }}
+
+            <h3>Grupy: </h3>
+
+            {% for group in person.groups %}
+                {{ group.name }}  &nbsp;
+            {% endfor %}
+            <br><br>
+
+        <a href="{{ path('editPerson', {'id': person.id}) }}">Edytuj podstawowe dane</a>{% endblock %}
+
+        <hr>
+        {% block remove %}{% endblock %}
+
+        <h3> Emaile: </h3>
+
+        <p>{% block editEmail1 %}{% endblock %}</p>
+
+        {% for email in person.emails %}
+            <li>{{ email.email }} {% if email.type is not null %} - {{ email.type.name }}{% endif %}<br>
+
+                {% block editEmail2 %}
+                    <a href="{{ path('editEmail', {'id': email.id }) }}">Edytuj</a>
+                    <a href="{{ path('removeEmail', {'id': email.id }) }}">Usuń</a>
+                {% endblock %}
+            </li><br>
+
+
+        {% endfor %}
+
+        Dodaj nowy email: <a href="{{ path('showNewEmail', {'id': person.id}) }}">Utwórz</a>
+        <hr>
+        <h3>Adresy: </h3>
+
+        {% block editAddress1 %}{% endblock %}
+
+
+        {#<p> {% block editAddress1 %}<a href="{{ path('showOne', {'id': person.id }) }}">Anuluj</a>{% endblock %} </p>#}
+
+        {% for address in person.addresses %}
+            <li> {{ address.street }} {{ address.homeNumber }}{% if address.apartmentNumber > 0 %}/{{ address.apartmentNumber }}{% endif %}
+                , {{ address.city }} <br>
+
+                {% block editAddress3 %}
+                    <a href="{{ path('editAddress', {'id': address.id }) }}">Edytuj</a>
+                    <a href="{{ path('removeAddress', {'id': address.id }) }}">Usuń</a>
+                {% endblock %}
+            </li><br>
+
+
+        {% endfor %}
+
+        Dodaj nowy adres: <a href="{{ path('showNewAddress', {'id': person.id}) }}">Utwórz</a>
+        <hr>
+
+        <h3>Numery telefonów: </h3>
+
+        {% block editPhone1 %}{% endblock %}
+
+        {% for phone in person.phones %}
+            <li>{{ phone.number }} {% if phone.type is not null %} - {{ phone.type.name }}{% endif %}<br>
+
+                {% block editPhone2 %}
+                    <a href="{{ path('editPhone', {'id': phone.id }) }}">Edytuj</a>
+                    <a href="{{ path('removePhone', {'id': phone.id }) }}">Usuń</a>
+                {% endblock %}
+            </li><br>
+
+        {% endfor %}
+
+        Dodaj nowy numer: <a href="{{ path('showNewPhone', {'id': person.id}) }}">Utwórz</a>
+        <br>
+    </div>
+
+{% endblock %}

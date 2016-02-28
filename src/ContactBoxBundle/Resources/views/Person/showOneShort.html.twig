@@ -1,0 +1,7 @@
+
+<tr>
+    <td><img width="80px" src="{{ asset('photos/'~ person.photoPath) }}"/></td>
+    <td>{{ person.firstName }} {{ person.lastName }}</td>
+    <td><a href="{{ path('showOne', {'id': person.id }) }}">Pokaż</a></td>
+</tr>
+

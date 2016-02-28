@@ -1,0 +1,72 @@
+{% extends '::base.html.twig' %}
+
+  {% block title %}Kontakty{% endblock %}
+
+{% block body %}
+    <div class="container">
+
+        {% block all %}
+            <h1>Kontakty</h1>
+
+            <h3>Wyszukiwanie po: </h3>
+
+                <a href="{{ path('searchByLastName') }}"><b>NAZWISKU</b></a> &nbsp;
+                <a href="{{ path('searchByFirstName') }}"><b>IMIENIU</b></a>
+
+            {% if searchName is defined %}
+                <h2> Wynik dla {{ searchName }}: </h2>
+            {% endif %}
+
+
+            {% block search %}{% endblock %}
+
+            <div class="table-responsive">
+                <br>
+                <table class="table">
+
+                    {% for person in persons %}
+                        <tr>
+                            <td><img width="80px"
+                                     src="{{ asset('photos/'~ person.photoPath) }}"/></td>
+                            <td> {{ person.firstName }} {{ person.lastName }} </td>
+                            <td><a href="{{ path('showOne', {'id': person.id }) }}">
+                                    Pokaż
+                                </a></td>
+                            <td>
+                                <a href="{{ path('deletePerson', {'id': person.id}) }}">
+                                    Usuń
+                                </a>
+                            </td>
+
+                        </tr>
+                    {% endfor %}
+
+                </table>
+
+            </div>
+            <hr>
+            <a href="{{ path('new') }}">
+                <h3>Dodaj nowy kontakt</h3>
+            </a>
+
+            {#<h3>Przeglądaj grupami: </h3>#}
+            {#<br>#}
+            {#{% render '/showAllGroups' %}#}
+
+            {#<br><br>#}
+
+            {#<a href="{{ path('showNewGroup') }}">#}
+            {#<button>Dodaj grupę</button>#}
+            {#</a>#}
+
+
+        {% endblock all %}
+
+
+    </div>
+
+
+
+
+{% endblock %}
+

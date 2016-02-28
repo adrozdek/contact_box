@@ -1,0 +1,11 @@
+{% extends 'ContactBoxBundle:Groups:showAllGroups.html.twig' %}
+
+{% block addGroup %}
+
+    <h1>Dodaj grupę: </h1>
+
+    {{ form_start(formGroups) }}
+    {{ form_widget(formGroups) }}
+    {{ form_end(formGroups) }}
+
+{% endblock %}

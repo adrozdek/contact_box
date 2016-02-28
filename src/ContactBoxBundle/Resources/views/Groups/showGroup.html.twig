@@ -1,0 +1,23 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Grupa: {{ group.name | upper }}</h1>
+        <br>
+
+        <div class="table-responsive">
+
+            <table class="table">
+
+                {% for person in persons %}
+
+                    {% include 'ContactBoxBundle:Person:showOneShort.html.twig' %}
+
+                {% endfor %}
+
+            </table>
+        </div>
+
+    </div>
+
+{% endblock %}

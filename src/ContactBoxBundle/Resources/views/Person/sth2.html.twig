@@ -1,0 +1,21 @@
+
+{% extends 'ContactBoxBundle:Person:showAll.html.twig' %}
+
+{% block search %}
+
+
+    <div>
+        <form name="input" action="{{ path('searchByFirstNamePost') }}" method="post">
+            <label>
+                Szukane imię:
+                <input type="text" name="name"/></label>
+
+            <input type="submit" name="submit" value="Submit">
+
+        </form>
+    </div>
+
+{% endblock %}
+
+
+

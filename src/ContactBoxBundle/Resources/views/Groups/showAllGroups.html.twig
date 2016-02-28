@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+
+    <div class="container">
+
+        <h1>Twoje grupy:</h1>
+        <br>
+
+        <div class="table-responsive">
+
+            <table class="table">
+
+                <tr>
+                    <td><h3>Nazwa</h3></td>
+                    <td><h3>Ilość osób</h3></td>
+                </tr>
+                {% for group in groups %}
+                    <tr>>
+                        <td><a href="{{ path("showByGroup", {'id': group.id }) }}"><h4>{{ group.name | upper }}</h4></a>
+                        </td>
+                        <td><h4>{{ group.persons.count }}</h4></td>
+                    </tr>
+
+
+                {% endfor %}
+
+            </table>
+        </div>
+
+
+        {% block addGroup %}
+            <a href="{{ path('showNewGroup') }}"><h3>Dodaj nową grupę</h3></a>
+        {% endblock %}
+
+    </div>
+
+{% endblock %}
+

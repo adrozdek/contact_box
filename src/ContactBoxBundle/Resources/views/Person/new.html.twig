@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Nowy kontakt{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1>Dodaj osobę: </h1>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}
