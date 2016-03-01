@@ -39,7 +39,8 @@ class GroupsController extends Controller
         $groupForm = $this->generateGroupForm($group, $this->generateUrl('newGroup'));
 
         $repo = $this->getDoctrine()->getRepository('ContactBoxBundle:Groups');
-        $groups = $repo->findAll();
+        //żeby widzieć tylko swoje grupy:
+        $groups = $repo->selectGroups($this->getUser());
 
         return ['formGroups' => $groupForm->createView(), 'groups' => $groups];
     }
@@ -58,9 +59,7 @@ class GroupsController extends Controller
         $form = $this->generateGroupForm($group, $this->generateUrl('newGroup'));
         $form->handleRequest($req);
 
-
         if($form->isValid() && $form->isSubmitted()) {
-
 
             $em = $this->getDoctrine()->getManager();
             $group->setUserOwner($user);
@@ -70,70 +69,38 @@ class GroupsController extends Controller
 
             $em->flush();
         }
-
         return $this->redirectToRoute('showAllGroups');
     }
 
 
     /**
-     * @Route("showByGroup/{id}", name = "showByGroup")
+     * @Route("/showByGroup/{id}", name = "showByGroup")
      * @Template("ContactBoxBundle:Groups:showGroup.html.twig")
      */
     public function getAllFromGroupAction($id)
     {
         $repo = $this->getDoctrine()->getRepository('ContactBoxBundle:Groups');
         $group = $repo->find($id);
-
-        $people = $group->getPersons();
-
-        return ['persons' => $people, 'group' => $group];
+        if($group->getUserOwner() == $this->getUser()) {
+            $people = $group->getPersons();
+            return ['persons' => $people, 'group' => $group];
+        } else {
+            return $this->redirectToRoute('showAllGroups');
+        }
     }
 
+    // @TODO: Adding removing options.
+
     /**
-     * @Route("showAllGroups", name = "showAllGroups")
+     * @Route("/showAllGroups", name = "showAllGroups")
      * @Template("ContactBoxBundle:Groups:showAllGroups.html.twig")
      */
     public function showAllGroupsAction()
     {
         $repo = $this->getDoctrine()->getRepository('ContactBoxBundle:Groups');
-        $groups = $repo->findAll();
+        $groups = $repo->selectGroups($this->getUser());
 
         return ['groups' => $groups];
-    }
-
-
-
-
-
-    /**
-     * @Route("/searchByFN", name = "searchByFirstName")
-     * @Method("GET")
-     *
-     */
-    public function searchByFNAction()
-    {
-        $repo = $this->getDoctrine()->getRepository('ContactBoxBundle:Person');
-        $allPeople = $repo->findAll();
-
-        return $this->render('ContactBoxBundle:Person:sth2.html.twig', array('persons' => $allPeople));
-    }
-
-    /**
-     * @Route("/searchByFN", name = "searchByFirstNamePost")
-     * @Method("POST")
-     *
-     */
-    public function searchByFNPostAction(Request $req)
-    {
-
-        $name = trim($req->request->get('name'));
-
-        $repo = $this->getDoctrine()->getRepository('ContactBoxBundle:Person');
-        $people = $repo->searchByFirstName($name);
-
-
-        return $this->render('ContactBoxBundle:Person:showAll.html.twig', array('persons' => $people, 'searchName' => $name));
-
     }
 
 
