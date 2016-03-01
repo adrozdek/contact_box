@@ -7,20 +7,26 @@
         <h1>
             <img width="150px" src="{{ asset('photos/'~ person.photoPath) }}" class="thumbnail"/>
             {{ person.firstName }} {{ person.lastName }}
-            &nbsp;<small><a href="{{ path('deletePerson', {'id': person.id}) }}">Usuń</a></small>
+            &nbsp;
+            <small><a href="{{ path('deletePerson', {'id': person.id}) }}">Usuń</a></small>
         </h1>
 
-        {% block editMain %}
-            <h3> Opis: </h3> {{ person.description }}
+        {% if person.userOwner.id == app.user.id %}
+            {% block editMain %}
+                <h3> Opis: </h3> {{ person.description }}
 
-            <h3>Grupy: </h3>
+                <h3>Grupy: </h3>
 
-            {% for group in person.groups %}
-                {{ group.name }}  &nbsp;
-            {% endfor %}
-            <br><br>
+                {% for group in person.groups %}
+                    {{ group.name }}  &nbsp;
+                {% endfor %}
+                <br><br>
 
-        <a href="{{ path('editPerson', {'id': person.id}) }}">Edytuj podstawowe dane</a>{% endblock %}
+
+                <a href="{{ path('editPerson', {'id': person.id}) }}">Edytuj podstawowe dane</a>
+            {% endblock %}
+        {% endif %}
+
 
         <hr>
         {% block remove %}{% endblock %}
@@ -33,15 +39,19 @@
             <li>{{ email.email }} {% if email.type is not null %} - {{ email.type.name }}{% endif %}<br>
 
                 {% block editEmail2 %}
-                    <a href="{{ path('editEmail', {'id': email.id }) }}">Edytuj</a>
-                    <a href="{{ path('removeEmail', {'id': email.id }) }}">Usuń</a>
+                    {% if person.userOwner.id == app.user.id %}
+                        <a href="{{ path('editEmail', {'id': email.id }) }}">Edytuj</a>
+                        <a href="{{ path('removeEmail', {'id': email.id }) }}">Usuń</a>
+                    {% endif %}
                 {% endblock %}
             </li><br>
 
 
         {% endfor %}
 
-        Dodaj nowy email: <a href="{{ path('showNewEmail', {'id': person.id}) }}">Utwórz</a>
+        {% if person.userOwner.id == app.user.id %}
+            Dodaj nowy email: <a href="{{ path('showNewEmail', {'id': person.id}) }}">Utwórz</a>
+        {% endif %}
         <hr>
         <h3>Adresy: </h3>
 
@@ -55,15 +65,19 @@
                 , {{ address.city }} <br>
 
                 {% block editAddress3 %}
-                    <a href="{{ path('editAddress', {'id': address.id }) }}">Edytuj</a>
-                    <a href="{{ path('removeAddress', {'id': address.id }) }}">Usuń</a>
+                    {% if person.userOwner.id == app.user.id %}
+                        <a href="{{ path('editAddress', {'id': address.id }) }}">Edytuj</a>
+                        <a href="{{ path('removeAddress', {'id': address.id }) }}">Usuń</a>
+                    {% endif %}
                 {% endblock %}
             </li><br>
 
 
         {% endfor %}
 
-        Dodaj nowy adres: <a href="{{ path('showNewAddress', {'id': person.id}) }}">Utwórz</a>
+        {% if person.userOwner.id == app.user.id %}
+            Dodaj nowy adres: <a href="{{ path('showNewAddress', {'id': person.id}) }}">Utwórz</a>
+        {% endif %}
         <hr>
 
         <h3>Numery telefonów: </h3>
@@ -74,14 +88,18 @@
             <li>{{ phone.number }} {% if phone.type is not null %} - {{ phone.type.name }}{% endif %}<br>
 
                 {% block editPhone2 %}
-                    <a href="{{ path('editPhone', {'id': phone.id }) }}">Edytuj</a>
-                    <a href="{{ path('removePhone', {'id': phone.id }) }}">Usuń</a>
+                    {% if person.userOwner.id == app.user.id %}
+                        <a href="{{ path('editPhone', {'id': phone.id }) }}">Edytuj</a>
+                        <a href="{{ path('removePhone', {'id': phone.id }) }}">Usuń</a>
+                    {% endif %}
                 {% endblock %}
             </li><br>
 
         {% endfor %}
 
-        Dodaj nowy numer: <a href="{{ path('showNewPhone', {'id': person.id}) }}">Utwórz</a>
+        {% if person.userOwner.id == app.user.id %}
+            Dodaj nowy numer: <a href="{{ path('showNewPhone', {'id': person.id}) }}">Utwórz</a>
+        {% endif %}
         <br>
     </div>
 

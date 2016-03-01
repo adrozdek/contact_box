@@ -42,7 +42,7 @@ class Email
 
     /**
      * @ORM\ManyToOne( targetEntity = "Person", inversedBy = "emails" )
-     * @ORM\JoinColumn( name = "person_id", referencedColumnName = "id")
+     * @ORM\JoinColumn( name = "person_id", referencedColumnName = "id", onDelete="CASCADE")
      *
      */
     private $person;

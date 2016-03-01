@@ -58,7 +58,9 @@ class GroupsController extends Controller
         $form = $this->generateGroupForm($group, $this->generateUrl('newGroup'));
         $form->handleRequest($req);
 
+
         if($form->isValid() && $form->isSubmitted()) {
+
 
             $em = $this->getDoctrine()->getManager();
             $group->setUserOwner($user);
