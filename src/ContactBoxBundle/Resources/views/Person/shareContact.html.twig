@@ -1,0 +1,17 @@
+{% extends 'ContactBoxBundle:Person:showAll.html.twig' %}
+
+{% block share %}
+
+
+    <div>
+        <form name="input" action="{{ path('sharePost', {'id': person.id }) }}" method="post">
+            <label>
+                Komu chcesz udostępnić (email):
+                <input type="text" name="email"/></label>
+
+            <input type="submit" name="submit" value="Submit">
+
+        </form>
+    </div>
+
+{% endblock %}

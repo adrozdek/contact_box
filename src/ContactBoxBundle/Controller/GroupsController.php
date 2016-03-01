@@ -4,12 +4,16 @@ namespace ContactBoxBundle\Controller;
 
 use ContactBoxBundle\Entity\Groups;
 use ContactBoxBundle\Entity\Person;
+use ContactBoxBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * @Route("/addressBook")
+ */
 class GroupsController extends Controller
 {
     public function generateGroupForm($group, $action)
@@ -45,20 +49,25 @@ class GroupsController extends Controller
      * @Template("ContactBoxBundle:Groups:newGroup.html.twig")
      * @Method("POST")
      */
-    public function newPhonePostAction(Request $req)
+    public function newGroupPostAction(Request $req)
     {
+        /** @var User $user */
+        $user = $this->getUser();
         $group = new Groups();
 
         $form = $this->generateGroupForm($group, $this->generateUrl('newGroup'));
         $form->handleRequest($req);
 
+        if($form->isValid() && $form->isSubmitted()) {
 
-        $em = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager();
+            $group->setUserOwner($user);
+            $user->addContactGroup($group);
 
-        $em->persist($group);
+            $em->persist($group);
 
-        $em->flush();
-
+            $em->flush();
+        }
 
         return $this->redirectToRoute('showAllGroups');
     }
@@ -91,36 +100,6 @@ class GroupsController extends Controller
     }
 
 
-    /**
-     * @Route("/searchByLN", name = "searchByLastName")
-     * @Method("GET")
-     *
-     */
-    public function form1Action()
-    {
-        $repo = $this->getDoctrine()->getRepository('ContactBoxBundle:Person');
-        $allPeople = $repo->findAll();
-
-        return $this->render('ContactBoxBundle:Person:sth.html.twig', ['persons' => $allPeople]);
-    }
-
-    /**
-     * @Route("/searchByLN", name = "searchByLastNamePost")
-     * @Method("POST")
-     *
-     */
-    public function form1PostAction(Request $req)
-    {
-
-        $name = trim($req->request->get('name'));
-
-        $repo = $this->getDoctrine()->getRepository('ContactBoxBundle:Person');
-        $people = $repo->searchByLastName($name);
-
-
-        return $this->render('ContactBoxBundle:Person:showAll.html.twig', array('persons' => $people, 'searchName' => $name));
-
-    }
 
 
 

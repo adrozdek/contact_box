@@ -5,7 +5,7 @@
 
     <div class="container">
         <h1>
-            <img width="150px" src="{{ asset('photos/'~ person.photoPath) }}"/>
+            <img width="150px" src="{{ asset('photos/'~ person.photoPath) }}" class="thumbnail"/>
             {{ person.firstName }} {{ person.lastName }}
             &nbsp;<small><a href="{{ path('deletePerson', {'id': person.id}) }}">Usuń</a></small>
         </h1>

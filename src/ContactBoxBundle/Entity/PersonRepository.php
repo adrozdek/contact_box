@@ -40,4 +40,16 @@ class PersonRepository extends EntityRepository
         return $query->getResult();
     }
 
+    public function findByUser(User $user) {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT p FROM ContactBoxBundle:Person p JOIN p.users t WHERE t = :user'
+        );
+        $query->setParameter('user', $user);
+        return $query->getResult();
+    }
+
+
+
+
 }

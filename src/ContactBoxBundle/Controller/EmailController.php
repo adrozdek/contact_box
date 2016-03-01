@@ -11,12 +11,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @Route("/addressBook")
+ */
 class EmailController extends Controller
 {
     public function generateEmailForm($email, $action)
     {
         $form = $this->createFormBuilder($email);
-        $form->add('email', 'text', array('trim' => true));
+        $form->add('email', 'text', array('trim' => true, 'required' => false));
         $form->add('type', 'entity', array(
             'class' => 'ContactBoxBundle:Type',
             'choice_label' => 'name',
@@ -61,17 +64,33 @@ class EmailController extends Controller
         $form = $this->generateEmailForm($email, $this->generateUrl('newEmail', ['id' => $id]));
         $form->handleRequest($req);
 
-        $em = $this->getDoctrine()->getManager();
+        //WALIDACJA DLUGA OPCJA:
+//        $validator = $this->get('validator'); //pobieramy walidator
+//        $errors = $validator->validate($email);  //sprawdzamy czy walidacje spełnione
+//
+//        if (count($errors) > 0) {    //jeśli błędów więcej niż 0 to:
+//            return $this->render('ContactBoxBundle:Person:error.html.twig', ['errors' => $errors]);
+//        }
 
-        $email->setPerson($person);
-        $person->addEmail($email);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
 
-        $em->persist($email);
+            $email->setPerson($person);
+            $person->addEmail($email);
 
-        $em->flush();
+            $em->persist($email);
+
+            $em->flush();
+
+            return $this->redirectToRoute('showOne', ['id' => $id]); //jeśli sie dodało to się dodało i wyświetl
+
+        } else {
+            return $this->render('ContactBoxBundle:Email:newEmail.html.twig', ['formEmail' => $form->createView(), 'person' => $person]);
+            //nie robimy redirecta
+        }
 
 
-        return $this->redirectToRoute('showOne', ['id' => $id]);
+
     }
 
     /**

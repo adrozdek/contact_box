@@ -10,15 +10,19 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
+
+/**
+ * @Route("/addressBook")
+ */
 class AddressController extends Controller
 {
 
     public function generateAddressForm($address, $action)
     {
         $form = $this->createFormBuilder($address);
-        $form->add('city', 'text', array('trim' => true));
-        $form->add('street', 'text', array('trim' => true));
-        $form->add('homeNumber', 'text', array('trim' => true));
+        $form->add('city', 'text', array('label' => 'Miasto', 'trim' => true));
+        $form->add('street', 'text', array('label' => 'Ulica: ', 'trim' => true));
+        $form->add('homeNumber', 'text', array('label' => 'Number domu: ', 'trim' => true));
         $form->add('apartmentNumber', 'number', array('required' => false, 'trim' => true));
         $form->add('save', 'submit');
         $form->setAction($action);

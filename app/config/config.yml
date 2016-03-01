@@ -78,3 +78,12 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: ContactBoxBundle\Entity\User
+
+services:
+    fos_user.doctrine_registry:
+        alias: doctrine

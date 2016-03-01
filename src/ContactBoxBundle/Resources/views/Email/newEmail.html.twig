@@ -3,7 +3,9 @@
 
 {% block editEmail1 %}
 
+    {{ form_errors(formEmail.email) }}
     {{ form_start(formEmail) }}
+
     {{ form_widget(formEmail) }}
     {{ form_end(formEmail) }}
 

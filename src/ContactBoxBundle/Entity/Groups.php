@@ -33,7 +33,13 @@ class Groups
      * @ORM\ManyToMany( targetEntity = "Person", mappedBy = "groups")
      */
     private $persons;
-    
+
+    /**
+     * @ORM\ManyToOne( targetEntity = "User", inversedBy = "contact_groups" )
+     * @ORM\JoinColumn( name = "user_owner_id", referencedColumnName = "id")
+     *
+     */
+    private $userOwner;
 
 
     /**
@@ -107,5 +113,51 @@ class Groups
     public function getPersons()
     {
         return $this->persons;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \ContactBoxBundle\Entity\User $user
+     * @return Groups
+     */
+    public function setUser(\ContactBoxBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \ContactBoxBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set userOwner
+     *
+     * @param \ContactBoxBundle\Entity\User $userOwner
+     * @return Groups
+     */
+    public function setUserOwner(\ContactBoxBundle\Entity\User $userOwner = null)
+    {
+        $this->userOwner = $userOwner;
+
+        return $this;
+    }
+
+    /**
+     * Get userOwner
+     *
+     * @return \ContactBoxBundle\Entity\User 
+     */
+    public function getUserOwner()
+    {
+        return $this->userOwner;
     }
 }

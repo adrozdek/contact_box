@@ -3,7 +3,6 @@
 namespace ContactBoxBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-//use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -27,6 +26,7 @@ class Person
      * @var string
      *
      * @ORM\Column(name="firstName", type="string", length=40)
+     * @Assert\NotBlank()
      */
     private $firstName;
 
@@ -72,6 +72,19 @@ class Person
      * @ORM\JoinTable( name = "person_group" )
      */
     private $groups;
+
+    /**
+     * @ORM\ManyToMany( targetEntity = "User", mappedBy = "persons")
+     */
+    private $users;
+
+    /**
+     * @ORM\ManyToOne( targetEntity = "User", inversedBy = "ownedPersons" )
+     * @ORM\JoinColumn( name = "user_id", referencedColumnName = "id")
+     */
+    private $userOwner;
+
+
 
     /**
      * Get id
@@ -314,5 +327,61 @@ class Person
     public function getPhotoPath()
     {
         return $this->photoPath;
+    }
+
+    /**
+     * Add users
+     *
+     * @param \ContactBoxBundle\Entity\User $users
+     * @return Person
+     */
+    public function addUser(\ContactBoxBundle\Entity\User $users)
+    {
+        $this->users[] = $users;
+
+        return $this;
+    }
+
+    /**
+     * Remove users
+     *
+     * @param \ContactBoxBundle\Entity\User $users
+     */
+    public function removeUser(\ContactBoxBundle\Entity\User $users)
+    {
+        $this->users->removeElement($users);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Set userOwner
+     *
+     * @param \ContactBoxBundle\Entity\User $userOwner
+     * @return Person
+     */
+    public function setUserOwner(\ContactBoxBundle\Entity\User $userOwner = null)
+    {
+        $this->userOwner = $userOwner;
+
+        return $this;
+    }
+
+    /**
+     * Get userOwner
+     *
+     * @return \ContactBoxBundle\Entity\User 
+     */
+    public function getUserOwner()
+    {
+        return $this->userOwner;
     }
 }

@@ -3,9 +3,11 @@
 namespace ContactBoxBundle\Controller;
 
 use ContactBoxBundle\Entity\Email;
+use ContactBoxBundle\Entity\GroupsRepository;
 use ContactBoxBundle\Entity\Person;
 use ContactBoxBundle\Entity\Address;
 
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -17,21 +19,26 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Finder\Finder;
 
-
+/**
+ * @Route("/addressBook")
+ */
 class PersonController extends Controller
 {
-    private function generatePersonForm($person, $action)
+    private function generatePersonForm($person, $action, $user)
     {
         $form = $this->createFormBuilder($person);
         $form->add('firstName', 'text', array('trim' => true));
         $form->add('lastName', 'text', array('trim' => true));
         $form->add('description', 'textarea', array('trim' => true));
-        $form->add('groups', 'entity', array(
-            'class' => 'ContactBoxBundle:Groups',
-            'choice_label' => 'name',
-            'expanded' => 'true',
-            'multiple' => 'true',
-        ));
+        $form->add( 'groups', 'entity', array(
+        'class' => 'ContactBoxBundle\Entity\Groups',
+        'property' => 'name',
+        'query_builder' => function(GroupsRepository $er ) use ( $user ) {
+            return $er->createQueryBuilder('w')
+                ->orderBy('w.name', 'ASC')
+                ->where('w.userOwner = ?1')
+                ->setParameter(1, $user);
+        }));
         $form->add('photoPath', 'file', array('data_class' => null,
             'required' => false
         ));
@@ -44,6 +51,20 @@ class PersonController extends Controller
 
     }
 
+
+
+    private function chooseGroup() {
+        $repo = $this->getDoctrine()->getRepository('ContactBoxBundle:User');
+        $user = $repo->find($this->getUser()->getId());
+        $repoGroups = $this->getDoctrine()->getRepository('ContactBoxBundle:Groups');
+        $groups = $repoGroups->selectGroups($user);
+
+        return ['groups' => $groups];
+
+    }
+
+
+
     /**
      * @Route("/new", name="new")
      * @Template("ContactBoxBundle:Person:new.html.twig")
@@ -52,7 +73,8 @@ class PersonController extends Controller
     public function newAction()
     {
         $person = new Person();
-        $personForm = $this->generatePersonForm($person, $this->generateUrl('newPerson'));
+        $user = $this->getUser();
+        $personForm = $this->generatePersonForm($person, $this->generateUrl('newPerson'), $user);
 
         return ['form' => $personForm->createView()];
     }
@@ -69,34 +91,43 @@ class PersonController extends Controller
         $form = $this->generatePersonForm($person, $this->generateUrl('newPerson'));
         $form->handleRequest($req);
 
+        if ($form->isSubmitted() && $form->isValid()) {
 
-        if ($person->getPhotoPath() != null) {
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
-            $file = $person->getPhotoPath();
+            if ($person->getPhotoPath() != null) {
+                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+                $file = $person->getPhotoPath();
 
-            // Generate a unique name for the file before saving it
-            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+                // Generate a unique name for the file before saving it
+                $fileName = md5(uniqid()) . '.' . $file->guessExtension();
 
-            // Move the file to the directory where brochures are stored
-            $photoDir = $this->container->getParameter('kernel.root_dir') . '/../web/photos';
-            $file->move($photoDir, $fileName);
+                // Move the file to the directory where brochures are stored
+                $photoDir = $this->container->getParameter('kernel.root_dir') . '/../web/photos';
+                $file->move($photoDir, $fileName);
 
-            // Update the 'brochure' property to store the PDF file name
-            // instead of its contents
-            $person->setPhotoPath($fileName);
+                // Update the 'brochure' property to store the PDF file name
+                // instead of its contents
+                $person->setPhotoPath($fileName);
+            }
+            // ... persist the $product variable or any other work
+
+            $user = $this->getUser();
+
+            $person->addUser($user);
+            $user->addPerson($person);
+
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($person);
+
+            $em->flush();
+
+            $id = $person->getId();
+
+            return $this->redirectToRoute('showOne', ['id' => $id]);
+        } else {
+            return new Response('Źlee');
         }
-        // ... persist the $product variable or any other work
-
-
-        $em = $this->getDoctrine()->getManager();
-
-        $em->persist($person);
-
-        $em->flush();
-
-        $id = $person->getId();
-
-        return $this->redirectToRoute('showOne', ['id' => $id]);
     }
 
     /**
@@ -131,6 +162,10 @@ class PersonController extends Controller
         $personForm = $this->generatePersonForm($person, $this->generateUrl('editSavePerson', ['id' => $id]));
 
         $personForm->handleRequest($req);
+
+        $user = $this->getUser();
+        $person->addUser($user);
+        $user->addPerson($person);
 
         if ($person->getPhotoPath() != null) {
 
@@ -197,7 +232,7 @@ class PersonController extends Controller
     }
 
     /**
-     * @Route("/{id}", name = "showOne")
+     * @Route("/person/{id}", name = "showOne")
      * @Template()
      */
     public function showOneAction($id)
@@ -215,7 +250,7 @@ class PersonController extends Controller
     public function showAllAction()
     {
         $repo = $this->getDoctrine()->getRepository('ContactBoxBundle:Person');
-        $persons = $repo->findOrderedByLastName();
+        $persons = $repo->findByUser($this->getUser());
 
         return ['persons' => $persons];
     }
@@ -291,9 +326,80 @@ class PersonController extends Controller
 //    }
 
 
+    /**
+     * @Route("/searchByLN", name = "searchByLastName")
+     * @Method("GET")
+     *
+     */
+    public function form1Action()
+    {
+        $repo = $this->getDoctrine()->getRepository('ContactBoxBundle:Person');
+        $allPeople = $repo->findAll();
+
+        return $this->render('ContactBoxBundle:Person:sth.html.twig', ['persons' => $allPeople]);
+    }
+
+    /**
+     * @Route("/searchByLN", name = "searchByLastNamePost")
+     * @Method("POST")
+     *
+     */
+    public function form1PostAction(Request $req)
+    {
+
+        $name = trim($req->request->get('name'));
+
+        $repo = $this->getDoctrine()->getRepository('ContactBoxBundle:Person');
+        $people = $repo->searchByLastName($name);
+
+
+        return $this->render('ContactBoxBundle:Person:showAll.html.twig', array('persons' => $people, 'searchName' => $name));
+
+    }
+
+    /**
+     * @Route("/share/{id}", name = "share")
+     * @Method("GET")
+     * @Template("ContactBoxBundle:Person:shareContact.html.twig")
+     */
+    public function shareContactAction($id) {
+
+        $repo = $this->getDoctrine()->getRepository('ContactBoxBundle:Person');
+        $allPeople = $repo->findByUser($this->getUser());
+        $personToShare = $repo->find($id);
+
+        return ['persons' => $allPeople, 'person' => $personToShare];
+    }
+
+    /**
+     * @Route("/share/{id}", name = "sharePost")
+     * @Method("POST")
+     */
+    public function shareContactPostAction(Request $req, $id) {
+        $email = trim($req->request->get('email'));
+
+        $repo = $this->getDoctrine()->getRepository('ContactBoxBundle:Person');
+        $personToShare = $repo->find($id);
+
+        $repoUser = $this->getDoctrine()->getRepository('ContactBoxBundle:User');
+        $user = $repoUser->findByEmail($email);
+        $userTo = $user[0];
+
+
+        $allPeople = $repo->findByUser($this->getUser());
 
 
 
+        $personToShare->addUser($userTo);
+        $userTo->addPerson($personToShare);
+
+        $em = $this->getDoctrine()->getManager();
+
+        $em->flush();
+
+        return $this->redirectToRoute('showAll', ['persons' => $allPeople]);
+
+    }
 
 
 }

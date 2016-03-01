@@ -13,4 +13,12 @@ use Doctrine\ORM\EntityRepository;
 class GroupsRepository extends EntityRepository
 {
 
+    public function selectGroups(User $user) {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT g FROM ContactBoxBundle:Groups g WHERE g.userOwner = :user'
+        );
+        $query->setParameter('user', $user);
+        return $query->getResult();
+    }
 }

@@ -1,0 +1,45 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% block login %}{% endblock %}
+
+    <h1>Logowanie</h1>
+
+
+    <div class="container">
+        <div class="form-group">
+        <form action="{{ path("fos_user_security_check") }}" method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+            <p>
+                <label for="username">Nazwa użtkownika: </label>
+                <input type="text" id="username" name="_username" value="{{ last_username }}" required="required"/>
+            </p>
+            <p>
+
+                <label for="password">Hasło: </label>
+                <input type="password" id="password" name="_password" required="required"/>
+            </p>
+            <p>
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on"/>
+                <label for="remember_me">Zapamiętaj mnie</label>
+            </p>
+
+            <input type="submit" id="_submit" name="_submit" value="Zaloguj"/>
+        </form>
+    </div>
+    </div>
+    <br>
+
+    Nie masz konta?
+    <a href="{{ path('fos_user_registration_register') }}">Zarejestruj się</a>
+
+
+
+
+{% endblock fos_user_content %}

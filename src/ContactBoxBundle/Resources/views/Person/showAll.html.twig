@@ -10,40 +10,46 @@
 
             <h3>Wyszukiwanie po: </h3>
 
-                <a href="{{ path('searchByLastName') }}"><b>NAZWISKU</b></a> &nbsp;
-                <a href="{{ path('searchByFirstName') }}"><b>IMIENIU</b></a>
+            <a href="{{ path('searchByLastName') }}"><b>NAZWISKU</b></a> &nbsp;
+            <a href="{{ path('searchByFirstName') }}"><b>IMIENIU</b></a>
 
             {% if searchName is defined %}
                 <h2> Wynik dla {{ searchName }}: </h2>
             {% endif %}
 
 
+            {% block share %}{% endblock %}
+
+
+
             {% block search %}{% endblock %}
 
-            <div class="table-responsive">
-                <br>
-                <table class="table">
 
-                    {% for person in persons %}
-                        <tr>
-                            <td><img width="80px"
-                                     src="{{ asset('photos/'~ person.photoPath) }}"/></td>
-                            <td> {{ person.firstName }} {{ person.lastName }} </td>
-                            <td><a href="{{ path('showOne', {'id': person.id }) }}">
-                                    Pokaż
-                                </a></td>
-                            <td>
-                                <a href="{{ path('deletePerson', {'id': person.id}) }}">
-                                    Usuń
-                                </a>
-                            </td>
+                <div class="table-responsive">
+                    <br>
+                    <table class="table">
 
-                        </tr>
-                    {% endfor %}
+                        {% for person in persons %}
+                            <tr>
+                                <td><img width="80px"
+                                         src="{{ asset('photos/'~ person.photoPath) }}" class="img-thumbnail"/></td>
+                                <td><a href="{{ path('showOne', {'id': person.id }) }}"> {{ person.firstName }} {{ person.lastName }}</a> </td>
+                                <td><a href="{{ path('share', {'id': person.id }) }}">Udostępnij</a></td>
+                                <td>
 
-                </table>
+                                    <a href="{{ path('deletePerson', {'id': person.id}) }}"
+                                       class="glyphicon glyphicon-trash"></a>
+                                </td>
 
-            </div>
+                            </tr>
+
+
+                        {% endfor %}
+
+                    </table>
+
+                </div>
+
             <hr>
             <a href="{{ path('new') }}">
                 <h3>Dodaj nowy kontakt</h3>
@@ -64,8 +70,6 @@
 
 
     </div>
-
-
 
 
 {% endblock %}

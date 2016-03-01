@@ -3,6 +3,7 @@
 namespace ContactBoxBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Email
@@ -18,6 +19,8 @@ class Email
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     *
      */
     private $id;
 
@@ -25,18 +28,22 @@ class Email
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=90)
+     * @Assert\NotBlank(message = "Podaj email")
+     * @Assert\Email(message = "Podaj prawidłowy adres email")
      */
     private $email;
 
     /**
      * @ORM\ManyToOne( targetEntity = "Type", inversedBy = "emails" )
      * @ORM\JoinColumn( name = "type_id", referencedColumnName = "id")
+     * @Assert\NotBlank()
      */
     private $type;
 
     /**
      * @ORM\ManyToOne( targetEntity = "Person", inversedBy = "emails" )
      * @ORM\JoinColumn( name = "person_id", referencedColumnName = "id")
+     *
      */
     private $person;
 
