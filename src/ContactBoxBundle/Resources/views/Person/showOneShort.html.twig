@@ -3,5 +3,9 @@
     <td><img width="80px" src="{{ asset('photos/'~ person.photoPath) }}"/></td>
     <td>{{ person.firstName }} {{ person.lastName }}</td>
     <td><a href="{{ path('showOne', {'id': person.id }) }}">Pokaż</a></td>
+    {% if group.id != null %}
+    <td><a href="{{ path('removePersonFromGroup', {'groupId': group.id, 'personId': person.id }) }}">Usuń z grupy</a></td>
+    {% endif %}
+
 </tr>
 

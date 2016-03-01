@@ -59,7 +59,7 @@ class GroupsController extends Controller
         $form = $this->generateGroupForm($group, $this->generateUrl('newGroup'));
         $form->handleRequest($req);
 
-        if($form->isValid() && $form->isSubmitted()) {
+        if ($form->isValid() && $form->isSubmitted()) {
 
             $em = $this->getDoctrine()->getManager();
             $group->setUserOwner($user);
@@ -81,7 +81,7 @@ class GroupsController extends Controller
     {
         $repo = $this->getDoctrine()->getRepository('ContactBoxBundle:Groups');
         $group = $repo->find($id);
-        if($group->getUserOwner() == $this->getUser()) {
+        if ($group->getUserOwner() == $this->getUser()) {
             $people = $group->getPersons();
             return ['persons' => $people, 'group' => $group];
         } else {
@@ -103,5 +103,26 @@ class GroupsController extends Controller
         return ['groups' => $groups];
     }
 
+    /**
+     * @Route("/removePersonFromGroup/{groupId}/{personId}", name = "removePersonFromGroup")
+     *
+     */
+    public function removePersonFromGroupAction($groupId, $personId)
+    {
+        $repo = $this->getDoctrine()->getRepository('ContactBoxBundle:Groups');
+        $group = $repo->find($groupId);
+        $peopleRepo = $this->getDoctrine()->getRepository('ContactBoxBundle:Person');
+        $person = $peopleRepo->find($personId);
+
+        if ($group->getUserOwner() == $this->getUser() && $group->getPersons()->contains($person)) {
+            $group->removePerson($person);
+            $person->removeGroup($group);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+        }
+        return $this->redirectToRoute('showByGroup', ['id' => $groupId]);
+    }
 
 }

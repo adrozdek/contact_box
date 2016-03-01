@@ -11,7 +11,7 @@
 
                 {% for person in persons %}
 
-                    {% include 'ContactBoxBundle:Person:showOneShort.html.twig' %}
+                    {% include 'ContactBoxBundle:Person:showOneShort.html.twig' with {'groupId': group.id} %}
 
                 {% endfor %}
 
