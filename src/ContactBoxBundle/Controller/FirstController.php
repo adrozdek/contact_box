@@ -14,7 +14,14 @@ class FirstController extends Controller
      */
     public function redirectToLoginAction()
     {
-        return $this->redirectToRoute('fos_user_security_login');
+        if ($this->getUser() != null)
+            return $this->redirectToRoute('showAll');
+        else {
+            return $this->redirectToRoute('fos_user_security_login');
+        }
+
+        //@TODO: jeśli zalogowany user to ma przekierowywać na showAll
     }
+
 
 }

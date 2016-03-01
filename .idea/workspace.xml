@@ -2,28 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a30b9650-634f-41b6-a028-8c827c09ca82" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/photos/026292d9a4c97b3de329eddc61bc519d.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/photos/0eb1761c612350d01cb0f111c2f0841f.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/photos/34f58d35d39d01b4c4fd7b777edcc235.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/photos/5b1f3fffdc14e3d69b62e4aa3142ddff.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/photos/5c7c4685236fcbc288ac7dd141fe0c09.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/photos/6e3df2a7d5f7e4da60be99594ed7d8a2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/photos/7173c9743173c8d3910f9891781391a6.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/photos/720ef839d94d08cdf4e8de358cefc228.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/photos/abc71779ed5ca70faab3dd93bafca661.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/photos/b1eabe428a21e7318bb4c8b580cb1145.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/photos/cf5c077282c01635e3a67049d72acf65.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/photos/da920bdb36d970da9a20598b4fa8e4b1.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/photos/daadbf32de2de2f71c66e44acf5d952b.gif" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig" afterPath="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ContactBoxBundle/Controller/GroupsController.php" afterPath="$PROJECT_DIR$/src/ContactBoxBundle/Controller/GroupsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ContactBoxBundle/Controller/FirstController.php" afterPath="$PROJECT_DIR$/src/ContactBoxBundle/Controller/FirstController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ContactBoxBundle/Controller/PersonController.php" afterPath="$PROJECT_DIR$/src/ContactBoxBundle/Controller/PersonController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ContactBoxBundle/Entity/Address.php" afterPath="$PROJECT_DIR$/src/ContactBoxBundle/Entity/Address.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ContactBoxBundle/Entity/Email.php" afterPath="$PROJECT_DIR$/src/ContactBoxBundle/Entity/Email.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ContactBoxBundle/Entity/Person.php" afterPath="$PROJECT_DIR$/src/ContactBoxBundle/Entity/Person.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ContactBoxBundle/Entity/Phone.php" afterPath="$PROJECT_DIR$/src/ContactBoxBundle/Entity/Phone.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/showOne.html.twig" afterPath="$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/showOne.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ContactBoxBundle/Entity/PersonRepository.php" afterPath="$PROJECT_DIR$/src/ContactBoxBundle/Entity/PersonRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/showAll.html.twig" afterPath="$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/showAll.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/sth.html.twig" afterPath="$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/sth.html.twig" />
     </list>
     <ignored path="warsztaty5.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -61,40 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GroupsController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Controller/GroupsController.php">
+      <file leaf-file-name="FirstController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Controller/FirstController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-              <folding>
-                <element signature="e#2353#2378#1#PHP" expanded="true" />
-                <element signature="e#2762#2787#1#PHP" expanded="true" />
-                <element signature="e#3075#3100#1#PHP" expanded="true" />
-                <element signature="e#3172#3212#0#PHP" expanded="true" />
-                <element signature="e#3526#3551#1#PHP" expanded="true" />
-                <element signature="e#3636#3679#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GroupsRepository.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Entity/GroupsRepository.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-              <folding>
-                <marker date="1456844813911" expanded="true" signature="395:460" placeholder="SELECT g FRO... ContactBoxBundle" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layout.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.413794">
-              <caret line="13" column="65" selection-start-line="13" selection-start-column="65" selection-end-line="13" selection-end-column="65" />
+              <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -110,27 +64,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PersonController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PersonController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Controller/PersonController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.34371525">
-              <caret line="220" column="13" selection-start-line="220" selection-start-column="13" selection-end-line="220" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="357" column="61" selection-start-line="357" selection-start-column="61" selection-end-line="357" selection-end-column="61" />
               <folding>
                 <element signature="e#47#81#0#PHP" expanded="true" />
                 <element signature="e#4253#4278#1#PHP" expanded="true" />
                 <element signature="e#4935#4960#1#PHP" expanded="true" />
                 <element signature="e#6902#6927#1#PHP" expanded="true" />
-                <element signature="e#7941#7966#1#PHP" expanded="true" />
-                <element signature="e#8532#8557#1#PHP" expanded="true" />
-                <element signature="e#8778#10045#0#PHP" expanded="false" />
-                <element signature="e#10046#10055#0#PHP" expanded="false" />
-                <element signature="e#11000#11025#1#PHP" expanded="true" />
-                <element signature="e#11097#11136#0#PHP" expanded="true" />
-                <element signature="e#11439#11464#1#PHP" expanded="true" />
-                <element signature="e#11548#11591#0#PHP" expanded="true" />
-                <element signature="e#11906#11931#1#PHP" expanded="true" />
-                <element signature="e#12567#12592#1#PHP" expanded="true" />
-                <element signature="e#12695#12718#1#PHP" expanded="true" />
+                <element signature="e#8097#8122#1#PHP" expanded="true" />
+                <element signature="e#8688#8713#1#PHP" expanded="true" />
+                <element signature="e#8934#10201#0#PHP" expanded="false" />
+                <element signature="e#10202#10211#0#PHP" expanded="false" />
+                <element signature="e#11147#11172#1#PHP" expanded="true" />
+                <element signature="e#11599#11624#1#PHP" expanded="true" />
+                <element signature="e#11726#11769#0#PHP" expanded="true" />
+                <element signature="e#12084#12109#1#PHP" expanded="true" />
+                <element signature="e#12808#12833#1#PHP" expanded="true" />
+                <element signature="e#12936#12959#1#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -140,23 +93,36 @@
         <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Entity/PersonRepository.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="45" column="65" selection-start-line="45" selection-start-column="65" selection-end-line="45" selection-end-column="65" />
+              <caret line="29" column="54" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
               <folding>
-                <marker date="1456864321807" expanded="true" signature="395:478" placeholder="SELECT peopl... ContactBoxBundle" />
-                <marker date="1456864321807" expanded="true" signature="711:797" placeholder="SELECT peopl... ContactBoxBundle" />
-                <marker date="1456864321807" expanded="true" signature="1033:1111" placeholder="SELECT peopl... ContactBoxBundle" />
-                <marker date="1456864321807" expanded="true" signature="1301:1371" placeholder="SELECT p FRO... ContactBoxBundle" />
+                <marker date="1456866879097" expanded="true" signature="395:478" placeholder="SELECT peopl... ContactBoxBundle" />
+                <marker date="1456866879097" expanded="true" signature="719:842" placeholder="SELECT peopl... ContactBoxBundle" />
+                <marker date="1456866879097" expanded="true" signature="719:880" placeholder="SELECT peopl... ContactBoxBundle" />
+                <marker date="1456866879097" expanded="true" signature="1175:1253" placeholder="SELECT peopl... ContactBoxBundle" />
+                <marker date="1456866879097" expanded="true" signature="1449:1519" placeholder="SELECT p FRO... ContactBoxBundle" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="showAll.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="showAll.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/showAll.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="36" column="79" selection-start-line="36" selection-start-column="79" selection-end-line="36" selection-end-column="79" />
+            <state vertical-scroll-proportion="0.4204672">
+              <caret line="18" column="72" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="72" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="showAllGroups.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Groups/showAllGroups.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+              <folding>
+                <element signature="e#12#28#0#Twig" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -166,6 +132,18 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
+              <folding>
+                <element signature="e#12#28#0#Twig" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sth.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/sth.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -216,7 +194,6 @@
         <option value="$PROJECT_DIR$/src/ContactBoxBundle/Controller/SearchType.php" />
         <option value="$PROJECT_DIR$/src/ContactBoxBundle/Controller/SearchTypeController.php" />
         <option value="$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/test.html.twig" />
-        <option value="$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/sth.html.twig" />
         <option value="$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/sth2.html.twig" />
         <option value="$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/showOneShort.html.twig" />
         <option value="$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/error.html.twig" />
@@ -230,7 +207,6 @@
         <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/base.html.twig" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Registration/register_content.html.twig" />
-        <option value="$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/showAll.html.twig" />
         <option value="$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/shareContact.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/app/config/security.yml" />
@@ -244,12 +220,14 @@
         <option value="$PROJECT_DIR$/src/ContactBoxBundle/Entity/Email.php" />
         <option value="$PROJECT_DIR$/src/ContactBoxBundle/Entity/Phone.php" />
         <option value="$PROJECT_DIR$/src/ContactBoxBundle/Entity/Person.php" />
-        <option value="$PROJECT_DIR$/src/ContactBoxBundle/Controller/FirstController.php" />
         <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/Security/login.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/FOSUserBundle/views/layout.html.twig" />
-        <option value="$PROJECT_DIR$/src/ContactBoxBundle/Entity/PersonRepository.php" />
-        <option value="$PROJECT_DIR$/src/ContactBoxBundle/Controller/PersonController.php" />
         <option value="$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/showOne.html.twig" />
+        <option value="$PROJECT_DIR$/src/ContactBoxBundle/Controller/FirstController.php" />
+        <option value="$PROJECT_DIR$/src/ContactBoxBundle/Entity/PersonRepository.php" />
+        <option value="$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/sth.html.twig" />
+        <option value="$PROJECT_DIR$/src/ContactBoxBundle/Controller/PersonController.php" />
+        <option value="$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/showAll.html.twig" />
       </list>
     </option>
   </component>
@@ -263,9 +241,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="90" />
-    <option name="y" value="34" />
-    <option name="width" value="1837" />
+    <option name="y" value="172" />
+    <option name="width" value="1940" />
     <option name="height" value="1059" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -822,10 +799,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="90" y="34" width="1837" height="1059" extended-state="0" />
+    <frame x="0" y="172" width="1940" height="1059" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16038267" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15159574" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -883,13 +860,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Groups/showAllGroups.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -988,16 +958,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/sth.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="e#12#53#0#Twig" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1180,14 +1140,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Controller/FirstController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="62" selection-start-line="16" selection-start-column="62" selection-end-line="16" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1257,27 +1209,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/showAll.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="36" column="79" selection-start-line="36" selection-start-column="79" selection-end-line="36" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Entity/PersonRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="45" column="65" selection-start-line="45" selection-start-column="65" selection-end-line="45" selection-end-column="65" />
-          <folding>
-            <marker date="1456864321807" expanded="true" signature="395:478" placeholder="SELECT peopl... ContactBoxBundle" />
-            <marker date="1456864321807" expanded="true" signature="711:797" placeholder="SELECT peopl... ContactBoxBundle" />
-            <marker date="1456864321807" expanded="true" signature="1033:1111" placeholder="SELECT peopl... ContactBoxBundle" />
-            <marker date="1456864321807" expanded="true" signature="1301:1371" placeholder="SELECT p FRO... ContactBoxBundle" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Entity/User.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1300,31 +1231,80 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
+          <folding>
+            <element signature="e#12#28#0#Twig" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Controller/FirstController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Entity/PersonRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="54" selection-start-line="29" selection-start-column="54" selection-end-line="29" selection-end-column="54" />
+          <folding>
+            <marker date="1456866879097" expanded="true" signature="395:478" placeholder="SELECT peopl... ContactBoxBundle" />
+            <marker date="1456866879097" expanded="true" signature="719:842" placeholder="SELECT peopl... ContactBoxBundle" />
+            <marker date="1456866879097" expanded="true" signature="719:880" placeholder="SELECT peopl... ContactBoxBundle" />
+            <marker date="1456866879097" expanded="true" signature="1175:1253" placeholder="SELECT peopl... ContactBoxBundle" />
+            <marker date="1456866879097" expanded="true" signature="1449:1519" placeholder="SELECT p FRO... ContactBoxBundle" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Groups/showAllGroups.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+          <folding>
+            <element signature="e#12#28#0#Twig" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/sth.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Controller/PersonController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34371525">
-          <caret line="220" column="13" selection-start-line="220" selection-start-column="13" selection-end-line="220" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="357" column="61" selection-start-line="357" selection-start-column="61" selection-end-line="357" selection-end-column="61" />
           <folding>
             <element signature="e#47#81#0#PHP" expanded="true" />
             <element signature="e#4253#4278#1#PHP" expanded="true" />
             <element signature="e#4935#4960#1#PHP" expanded="true" />
             <element signature="e#6902#6927#1#PHP" expanded="true" />
-            <element signature="e#7941#7966#1#PHP" expanded="true" />
-            <element signature="e#8532#8557#1#PHP" expanded="true" />
-            <element signature="e#8778#10045#0#PHP" expanded="false" />
-            <element signature="e#10046#10055#0#PHP" expanded="false" />
-            <element signature="e#11000#11025#1#PHP" expanded="true" />
-            <element signature="e#11097#11136#0#PHP" expanded="true" />
-            <element signature="e#11439#11464#1#PHP" expanded="true" />
-            <element signature="e#11548#11591#0#PHP" expanded="true" />
-            <element signature="e#11906#11931#1#PHP" expanded="true" />
-            <element signature="e#12567#12592#1#PHP" expanded="true" />
-            <element signature="e#12695#12718#1#PHP" expanded="true" />
+            <element signature="e#8097#8122#1#PHP" expanded="true" />
+            <element signature="e#8688#8713#1#PHP" expanded="true" />
+            <element signature="e#8934#10201#0#PHP" expanded="false" />
+            <element signature="e#10202#10211#0#PHP" expanded="false" />
+            <element signature="e#11147#11172#1#PHP" expanded="true" />
+            <element signature="e#11599#11624#1#PHP" expanded="true" />
+            <element signature="e#11726#11769#0#PHP" expanded="true" />
+            <element signature="e#12084#12109#1#PHP" expanded="true" />
+            <element signature="e#12808#12833#1#PHP" expanded="true" />
+            <element signature="e#12936#12959#1#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ContactBoxBundle/Resources/views/Person/showAll.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4204672">
+          <caret line="18" column="72" selection-start-line="18" selection-start-column="72" selection-end-line="18" selection-end-column="72" />
+          <folding />
         </state>
       </provider>
     </entry>

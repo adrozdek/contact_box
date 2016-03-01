@@ -210,17 +210,18 @@ class PersonController extends Controller
         $person = $repo->find($id);
         $user = $this->getUser();
 
+        //jeśli nie jesteś właścicielem kontaktu
         if ($person->getUserOwner()->getId() != $user->getId()) {
+            //ale, jeśli kontakt zawiera Cię w użytkownikach to:
             if($person->getUsers()->contains($user)) {
+                //usuń go z moich kontaktów
                 $user->removePerson($person);
                 $person->removeUser($user);
 
                 $em = $this->getDoctrine()->getManager();
                 $em->flush();
-
             }
         } else {
-
             $photoPath = $person->getPhotoPath();
 
             if ($photoPath != null) {
@@ -345,30 +346,29 @@ class PersonController extends Controller
 
 
     /**
-     * @Route("/searchByLN", name = "searchByLastName")
+     * @Route("/search", name = "search")
      * @Method("GET")
      *
      */
-    public function form1Action()
+    public function formSearchAction()
     {
         $repo = $this->getDoctrine()->getRepository('ContactBoxBundle:Person');
-        $allPeople = $repo->findAll();
+        $allPeople = $repo->findByUser($this->getUser());
 
-        return $this->render('ContactBoxBundle:Person:sth.html.twig', ['persons' => $allPeople]);
+        return $this->render('ContactBoxBundle:Person:showAll.html.twig', ['persons' => $allPeople]);
     }
 
     /**
-     * @Route("/searchByLN", name = "searchByLastNamePost")
+     * @Route("/search", name = "searchPost")
      * @Method("POST")
      *
      */
-    public function form1PostAction(Request $req)
+    public function formSearchPostAction(Request $req)
     {
-
         $name = trim($req->request->get('name'));
 
         $repo = $this->getDoctrine()->getRepository('ContactBoxBundle:Person');
-        $people = $repo->searchByLastName($name);
+        $people = $repo->searchByLastName($this->getUser(), $name);
 
 
         return $this->render('ContactBoxBundle:Person:showAll.html.twig', array('persons' => $people, 'searchName' => $name));
@@ -387,7 +387,8 @@ class PersonController extends Controller
         $personToShare = $repo->find($id);
         $user = $this->getUser();
 
-        if( $personToShare->getUserOwner()->getId() != $user->getId() ) {
+//        if( $personToShare->getUserOwner()->getId() != $user->getId() ) {
+        if(!($personToShare->getUsers()->contains($user))) {
             return $this->redirectToRoute('showAll');
         } else {
             return ['persons' => $allPeople, 'person' => $personToShare];
@@ -411,8 +412,9 @@ class PersonController extends Controller
 
         $allPeople = $repo->findByUser($this->getUser());
 
-        $userOwner = $this->getUser();
-        if( $personToShare->getUserOwner()->getId() != $userOwner->getId() ) {
+//        $userOwner = $this->getUser();
+//        if( $personToShare->getUserOwner()->getId() != $userOwner->getId() ) {
+        if(!($personToShare->getUsers()->contains($this->getUser()))) {
             return $this->redirectToRoute('showAll');
         } else {
             $personToShare->addUser($userTo);

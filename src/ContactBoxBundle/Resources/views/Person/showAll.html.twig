@@ -8,10 +8,20 @@
         {% block all %}
             <h1>Kontakty</h1>
 
-            <h3>Wyszukiwanie po: </h3>
+            {% block search %}
 
-            <a href="{{ path('searchByLastName') }}"><b>NAZWISKU</b></a> &nbsp;
-            <a href="{{ path('searchByFirstName') }}"><b>IMIENIU</b></a>
+                <div>
+                    <form name="input" action="{{ path('searchPost') }}" method="post">
+                        <label>
+                            Wyszukaj:
+                            <input type="text" name="name"/></label>
+
+                        <input type="submit" name="submit" value="Znajdź">
+
+                    </form>
+                </div>
+
+            {% endblock %}
 
             {% if searchName is defined %}
                 <h2> Wynik dla {{ searchName }}: </h2>
@@ -19,11 +29,6 @@
 
 
             {% block share %}{% endblock %}
-
-
-
-            {% block search %}{% endblock %}
-
 
                 <div class="table-responsive">
                     <br>
@@ -34,6 +39,7 @@
                                 <td><img width="80px"
                                          src="{{ asset('photos/'~ person.photoPath) }}" class="img-thumbnail"/></td>
                                 <td><a href="{{ path('showOne', {'id': person.id }) }}"> {{ person.firstName }} {{ person.lastName }}</a> </td>
+                                {# Można zrobić, żeby użytkownicy mogli dalej udostępniać kontakty lub, że można tylko swoje #}
                                 <td><a href="{{ path('share', {'id': person.id }) }}">Udostępnij</a></td>
                                 <td>
 

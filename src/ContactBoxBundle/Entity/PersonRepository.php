@@ -22,23 +22,24 @@ class PersonRepository extends EntityRepository
         return $query->getResult();
     }
 
-    public function searchByLastName($lastName) {
+    public function searchByLastName(User $user, $name) {
         $em = $this->getEntityManager();
 
         $query = $em->createQuery(
-            'SELECT people FROM ContactBoxBundle:Person people WHERE people.lastName LIKE :lastName');
-        $query->setParameter('lastName', $lastName);
+            'SELECT people FROM ContactBoxBundle:Person people JOIN people.users t WHERE t = :user AND LOWER(people.lastName) LIKE :name OR LOWER(people.firstName) LIKE :name');
+        $query->setParameter('name', strtolower($name));
+        $query->setParameter('user', $user);
 
         return $query->getResult();
     }
-
-    public function findOrderedByLastName() {
-        $em = $this->getEntityManager();
-        $query = $em->createQuery(
-            'SELECT people FROM ContactBoxBundle:Person people ORDER BY people.lastName ASC'
-        );
-        return $query->getResult();
-    }
+//
+//    public function findOrderedByLastName() {
+//        $em = $this->getEntityManager();
+//        $query = $em->createQuery(
+//            'SELECT people FROM ContactBoxBundle:Person people ORDER BY people.lastName ASC'
+//        );
+//        return $query->getResult();
+//    }
 
     public function findByUser(User $user) {
         $em = $this->getEntityManager();
