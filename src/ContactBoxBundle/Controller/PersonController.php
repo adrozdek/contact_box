@@ -52,7 +52,6 @@ class PersonController extends Controller
         $personForm = $form->getForm();
 
         return $personForm;
-
     }
 
 
